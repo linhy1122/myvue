@@ -5,23 +5,31 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.jpg" width="125" height="125" />
+    <div id="building">
 
-    <div class="wrapper">
-      <HelloWorld msg="Ciallo!!!!!" />
+      <img alt="Vue logo" class="logo" src="@/assets/logo.jpg" width="125" height="125" />
 
-      <nav>
-        <RouterLink to="/">Ciallo</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/ciallo">Ciallo</RouterLink>
-      </nav>
+      <div class="wrapper">
+        <HelloWorld msg="Ciallo!!!!!" />
+
+        <nav>
+          <RouterLink to="/">Ciallo</RouterLink>
+          <RouterLink to="/about">About</RouterLink>
+          <RouterLink to="/ciallo">Ciallo</RouterLink>
+        </nav>
+      </div>
     </div>
   </header>
 
   <RouterView />
-</template>
+</template>s
 
 <style scoped>
+#building {
+
+  backdrop-filter: blur(10px);
+}
+
 header {
   line-height: 1.5;
   max-height: 100vh;
