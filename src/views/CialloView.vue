@@ -1,12 +1,37 @@
 <template>
   <div class="ciallo" style="backdrop-filter: blur(10px);">
-    <el-scrollbar style="height: 500px;">
+    <el-scrollbar style="height: 1000px; width: 800px;">
       <img alt="Vue logo" class="logo" src="@/assets/C.webp" width="125" height="125" />
       <h1>CIALLO!!!!!! </h1>
       <img alt="Vue logo" class="logo" src="@/assets/C.webp" width="125" height="125" />
       <h1>CIALLO!!!!!! </h1>
       <img alt="Vue logo" class="logo" src="@/assets/C.webp" width="125" height="125" />
       <h1>CIALLO!!!!!! </h1>
+      <img alt="Vue logo" class="logo" src="@/assets/C.webp" width="125" height="125" />
+      <h1>CIALLO!!!!!!!! </h1>
+      <!-- <el-avatar shape="square" src="@/assets/logo.jpg" size="100"></el-avatar> -->
+      <img alt="Vue logo" class="logo" src="@/assets/C.webp" width="125" height="125" />
+      <h1>CIALLO!!!!!! </h1>
+      <img alt="Vue logo" class="logo" src="@/assets/C.webp" width="125" height="125" />
+      <h1>CIALLO!!!!!! </h1>
+      <img alt="Vue logo" class="logo" src="@/assets/C.webp" width="125" height="125" />
+      <h1>CIALLO!!!!!! </h1>
+      <img alt="Vue logo" class="logo" src="@/assets/C.webp" width="125" height="125" />
+      <h1>CIALLO!!!!!!!! </h1> <img alt="Vue logo" class="logo" src="@/assets/C.webp" width="125" height="125" />
+      <h1>CIALLO!!!!!! </h1>
+      <img alt="Vue logo" class="logo" src="@/assets/C.webp" width="125" height="125" />
+      <h1>CIALLO!!!!!! </h1>
+      <img alt="Vue logo" class="logo" src="@/assets/C.webp" width="125" height="125" />
+      <h1>CIALLO!!!!!! </h1>
+      <img alt="Vue logo" class="logo" src="@/assets/C.webp" width="125" height="125" />
+      <h1>CIALLO!!!!!!!! </h1> <img alt="Vue logo" class="logo" src="@/assets/C.webp" width="125" height="125" />
+      <h1>CIALLO!!!!!! </h1>
+      <img alt="Vue logo" class="logo" src="@/assets/C.webp" width="125" height="125" />
+      <h1>CIALLO!!!!!! </h1>
+      <img alt="Vue logo" class="logo" src="@/assets/C.webp" width="125" height="125" />
+      <h1>CIALLO!!!!!! </h1>
+      <img alt="Vue logo" class="logo" src="@/assets/C.webp" width="125" height="125" />
+      <h1>CIALLO!!!!!!!! </h1>
     </el-scrollbar>
   </div>
 </template>
