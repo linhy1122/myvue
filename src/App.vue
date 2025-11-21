@@ -1,250 +1,351 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-import { el } from 'element-plus/es/locales.mjs';
-import ciallo from './components/ciallo.vue';
-// import logoImg from '@/assets/logo.jpg';
+import ciallo from './components/ciallo.vue'
 </script>
 
-<!-- <template>
-  <header>
-    <div id="building">
-
-      <img alt="Vue logo" class="logo" src="@/assets/logo.jpg" width="125" height="125" />
-      <!-- <div class="demo-type">
-        <el-avatar src="@/assets/logo.jpg" />
-      </div> -->
-<!-- <div class="wrapper">
-        <HelloWorld msg="Ciallo!!!!!" />
-
-        <nav>
-          <RouterLink to="/">Ciallo</RouterLink>
-          <RouterLink to="/about">About</RouterLink>
-          <RouterLink to="/ciallo">Ciallo</RouterLink>
-        </nav>
-      </div>
-    </div>
-  </header>
-
-  <RouterView />
-</template> -->
 <template>
-  <header>
-    <div id="building">
-      <!-- header -->
-      <el-container style="border: 2px red solid; width: 1200px; height: 100px;">
-        <ciallo />
-        <ciallo />
-        <ciallo />
-        <ciallo />
+  <div class="main-container">
+    <!-- 顶部导航栏 -->
+    <el-header class="header">
+      <div class="header-content">
+        <div class="logo-section">
+          <img alt="Vue logo" class="logo" src="@/assets/logo.jpg" width="60" height="60" />
+          <h1 class="app-title">Ciallo App</h1>
+        </div>
+        <div class="header-right">
+          <el-button type="primary" @click="$router.push('/')">首页</el-button>
+          <el-button @click="$router.push('/about')">关于</el-button>
+          <el-button @click="$router.push('/ciallo')">Ciallo</el-button>
+        </div>
+      </div>
+    </el-header>
 
-        <audio controls src="/src/assets/ciallo.mp3 "></audio>
-        <!-- <span id="ciallo-text" class="shake-text"><span style="animation-delay: 0.0935655s;">C</span><span
-            style="animation-delay: 0.318393s;">i</span><span style="animation-delay: 0.413155s;">a</span><span
-            style="animation-delay: 0.24062s;">l</span><span style="animation-delay: 0.173003s;">l</span><span
-            style="animation-delay: 0.248909s;">o</span><span style="animation-delay: 0.377515s;">～</span><span
-            style="animation-delay: 0.0979662s;">(</span><span style="animation-delay: 0.25305s;">∠</span><span
-            style="animation-delay: 0.18591s;">・</span><span style="animation-delay: 0.28715s;">ω</span><span
-            style="animation-delay: 0.432797s;">&lt;</span><span style="animation-delay: 0.0389441s;">
-          </span><span style="animation-delay: 0.0406722s;">)</span><span
-            style="animation-delay: 0.111785s;">⌒</span><span style="animation-delay: 0.306224s;">★</span></span> -->
-        <el-header><img alt="Vue logo" class="logo" src="@/assets/logo.jpg" width="125" height="125"></el-header>
-        <el-container style="border: 2px yellow solid;  width: 1200px; height: 800px;">
-          <!-- side -->
-          <el-aside width="200px">
-            <nav>
-              <RouterLink to="/">Ciallo</RouterLink>
-              <RouterLink to="/about">About</RouterLink>
-              <RouterLink to="/ciallo">Ciallo</RouterLink>
-            </nav>
-          </el-aside>
-          <el-container style="border: 2px purple solid; width: 800px; height: 800px;">
-            <!-- main -->
-            <el-main style="width: 800px;">
-              <RouterView />
-            </el-main>
-          </el-container>
-          <el-container style="border: 2px green solid; width: 200px; height: 800px;">
-            <el-footer>
-              <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.jpg" width="125" height="125"> -->
-              <!-- <HelloWorld msg="Ciallo!!!!!" /> -->
-            </el-footer>
-          </el-container>
-        </el-container>
+    <div class="page-content">
+      <!-- 左侧导航栏 -->
+      <el-aside width="220px" class="sidebar">
+        <el-menu :default-active="$route.path" class="sidebar-menu" router background-color="#f5f5f5" text-color="#333"
+          active-text-color="#409EFF">
+          <el-menu-item index="/">
+            <el-icon>
+              <House />
+            </el-icon>
+            <span>首页</span>
+          </el-menu-item>
+          <el-menu-item index="/about">
+            <el-icon>
+              <InfoFilled />
+            </el-icon>
+            <span>关于我们</span>
+          </el-menu-item>
+          <el-menu-item index="/ciallo">
+            <el-icon>
+              <Star />
+            </el-icon>
+            <span>Ciallo</span>
+          </el-menu-item>
+          <el-sub-menu index="/components">
+            <template #title>
+              <el-icon>
+                <Menu />
+              </el-icon>
+              <span>组件</span>
+            </template>
+            <el-menu-item index="/components/button">按钮</el-menu-item>
+            <el-menu-item index="/components/table">表格</el-menu-item>
+            <el-menu-item index="/components/form">表单</el-menu-item>
+          </el-sub-menu>
+        </el-menu>
+      </el-aside>
+
+      <!-- 主内容区 -->
+      <el-container>
+        <el-main class="main-area">
+          <div class="content-wrapper">
+            <!-- 示例内容，用于演示滚动 -->
+            <div v-for="i in 20" :key="i" class="demo-content">
+              <h2>内容区域 {{ i }}</h2>
+              <p>这是第 {{ i }} 个内容块，用于演示页面滚动效果。左侧和右侧的导航栏会跟随页面一起滚动，保持相对位置不变。</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                dolore
+                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                commodo
+                consequat.</p>
+              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                laborum.
+              </p>
+            </div>
+
+            <RouterView />
+          </div>
+        </el-main>
+
+        <!-- 右侧边栏 -->
+        <el-aside width="280px" class="right-sidebar">
+          <div class="sidebar-content">
+            <h3>快速导航</h3>
+            <el-button type="text" @click="$router.push('/')">返回首页</el-button>
+            <el-button type="text" @click="$router.push('/about')">关于我们</el-button>
+            <el-button type="text" @click="$router.push('/ciallo')">Ciallo页面</el-button>
+
+            <div class="sidebar-card">
+              <h4>系统信息</h4>
+              <p>当前页面: {{ $route.name || $route.path }}</p>
+              <p>当前时间: {{ new Date().toLocaleString() }}</p>
+            </div>
+
+            <div class="sidebar-card">
+              <h4>用户状态</h4>
+              <p>已登录</p>
+              <p>用户: admin</p>
+            </div>
+
+            <div class="sidebar-card">
+              <h4>通知中心</h4>
+              <p>新消息: 3条</p>
+              <p>待办事项: 5项</p>
+            </div>
+          </div>
+        </el-aside>
       </el-container>
-
     </div>
-  </header>
+
+    <!-- 页脚 -->
+    <el-footer class="footer">
+      <div class="footer-content">
+        <p>&copy; 2023 Ciallo App. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="#" @click.prevent>隐私政策</a>
+          <a href="#" @click.prevent>服务条款</a>
+          <a href="#" @click.prevent>联系我们</a>
+        </div>
+      </div>
+    </el-footer>
+  </div>
 </template>
 
 <style scoped>
-#building {
-
-  backdrop-filter: blur(5px);
+.main-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 1200px;
+  /* 固定页面宽度 */
+  margin: 0 auto;
+  /* 居中显示 */
 }
 
-:deep(.el-avatar) {
-  display: inline-block !important;
-  /* 确保元素显示 */
-  width: 100px !important;
-  /* 强制宽度 */
-  height: 100px !important;
-  /* 强制高度 */
-  border: 2px solid red !important;
-  /* 强制边框（用于验证） */
-  background: transparent !important;
-  /* 去掉默认灰色背景 */
+.header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 0;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 
-:deep(.el-avatar img) {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  /* 确保图片充满容器 */
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 100%;
+  color: white;
 }
 
-header {
-  line-height: 1.5;
-  /* max-height: 100vh; */
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.header-right {
+  display: flex;
+  gap: 10px;
+}
+
+.page-content {
+  display: flex;
+  flex: 1;
+  background-color: #f9f9f9;
+}
+
+.sidebar {
+  background-color: #f5f5f5;
+  border-right: 1px solid #e4e7ed;
+  width: 220px;
+  flex-shrink: 0;
+  /* 防止侧边栏被压缩 */
+}
+
+.sidebar-menu {
+  border: none;
+  height: 100%;
+}
+
+.main-area {
+  padding: 20px;
+  background-color: #fff;
+  flex: 1;
+}
+
+.content-wrapper {
+  max-width: 100%;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.demo-content {
+  padding: 20px;
+  margin-bottom: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #409EFF;
+}
+
+.demo-content h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.right-sidebar {
+  background-color: #fafafa;
+  border-left: 1px solid #e4e7ed;
+  width: 280px;
+  padding: 20px;
+  flex-shrink: 0;
+  /* 防止侧边栏被压缩 */
+}
+
+.sidebar-content h3 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.sidebar-content .el-button {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.sidebar-card {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-card h4 {
+  margin-top: 0;
+  color: #333;
+}
+
+.sidebar-card p {
+  margin: 5px 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.footer {
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  color: #bbb;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: white;
 }
 
 .logo {
-  display: block;
-  margin: 0 auto 2rem;
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+/* 响应式设计 - 在固定宽度下适配小屏幕 */
+@media (max-width: 1220px) {
+  .main-container {
+    width: 100%;
+    margin: 0;
+  }
+
+  .header-content {
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .page-content {
+    flex-direction: column;
+  }
+
+  .sidebar,
+  .right-sidebar {
+    width: 100%;
+  }
+
+  .main-area {
+    padding: 10px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+/* 动画效果 */
+.content-wrapper {
+  animation: fadeIn 0.5s ease-in;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-
-
-
-
-  .shake-text {
-    font-size: 24px;
-    display: inline-block;
-  }
-
-  .shake-text span {
-    display: inline-block;
-    animation: shake 0.5s infinite, colorChange 2s infinite;
-  }
-
-  @keyframes shake {
-    0% {
-      transform: translate(0, 0);
-    }
-
-    25% {
-      transform: translate(-1px, -1px);
-    }
-
-    50% {
-      transform: translate(1px, 1px);
-    }
-
-    75% {
-      transform: translate(-1px, 1px);
-    }
-
-    100% {
-      transform: translate(1px, -1px);
-    }
-  }
-
-  @keyframes colorChange {
-    0% {
-      color: red;
-    }
-
-    25% {
-      color: blue;
-    }
-
-    50% {
-      color: green;
-    }
-
-    75% {
-      color: orange;
-    }
-
-    100% {
-      color: purple;
-    }
-  }
-
-  .scrollbar-demo-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 50px;
-    margin: 10px;
-    text-align: center;
-    border-radius: 4px;
-    background: var(--el-color-primary-light-9);
-    color: var(--el-color-primary);
-  }
-
-  /* .demo-type {
-    display: flex;
-  }
-
-  .demo-type>div {
-    flex: 1;
-    text-align: center;
-  }
-
-  .demo-type>div:not(:last-child) {
-    border-right: 1px solid var(--el-border-color);
-  } */
-
 }
 </style>
+
+<script lang="ts">
+import { House, InfoFilled, Star, Menu } from '@element-plus/icons-vue'
+
+export default {
+  components: {
+    House,
+    InfoFilled,
+    Star,
+    Menu
+  }
+}
+</script>
