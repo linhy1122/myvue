@@ -22,6 +22,36 @@ const router = createRouter({
       name: 'ciallo',
       component: () => import('../views/CialloView.vue'),
     },
+    {
+      path: '/Lab1',
+      name: 'lab1',
+      component: () => import('../views/Lab1.vue'),
+    },
+    {
+      path: '/Lab2',
+      name: 'lab2',
+      component: () => import('../views/Lab2.vue'),
+    },
+    {
+      path: '/Lab3',
+      name: 'Lab3',
+      component: () => import('../views/Lab3.vue'),
+    },
+    {
+      path: '/Lab4',
+      name: 'Lab4',
+      component: () => import('../views/Lab4.vue'),
+    },
+    {
+      path: '/Lab5',
+      name: 'Lab5',
+      component: () => import('../views/Lab5.vue'),
+    },
+    {
+      path: '/Lab6',
+      name: 'Lab6',
+      component: () => import('../views/Lab6.vue'),
+    }
   ],
 })
 

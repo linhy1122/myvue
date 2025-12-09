@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <ciallo />
+    <CialloItem />
     <!-- <audio src="/src/assets/ciallo.mp3 " autoplay='true' loop="true"></audio> -->
     <div @click="handleClick">
       <img alt="Vue logo" class="logo" src="@/assets/logo.jpg" width="125" height="125">
@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import ciallo from '../components/ciallo.vue';
+import CialloItem from '../components/CialloItem.vue';
 import { ref } from 'vue';
 
 // 音频元素引用

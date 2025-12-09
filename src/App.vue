@@ -1,9 +1,4 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-import ciallo from './components/ciallo.vue'
-</script>
-
+<!-- eslint-disable vue/block-lang -->
 <template>
   <div class="main-container">
     <!-- 顶部导航栏 -->
@@ -11,7 +6,7 @@ import ciallo from './components/ciallo.vue'
       <div class="header-content">
         <div class="logo-section">
           <img alt="Vue logo" class="logo" src="@/assets/logo.jpg" width="60" height="60" />
-          <h1 class="app-title">Ciallo App</h1>
+          <h1 class="app-title"><CialloItem/>App</h1>
         </div>
         <div class="header-right">
           <el-button type="primary" @click="$router.push('/')">首页</el-button>
@@ -44,16 +39,28 @@ import ciallo from './components/ciallo.vue'
             </el-icon>
             <span>Ciallo</span>
           </el-menu-item>
+
+          <!-- <el-menu-item index="/Lab1">
+            <el-icon>
+              <Star />
+            </el-icon>
+            <span>Lab1</span>
+          </el-menu-item> -->
+
           <el-sub-menu index="/components">
             <template #title>
               <el-icon>
                 <Menu />
               </el-icon>
-              <span>组件</span>
+              <span>实验</span>
             </template>
-            <el-menu-item index="/components/button">按钮</el-menu-item>
-            <el-menu-item index="/components/table">表格</el-menu-item>
-            <el-menu-item index="/components/form">表单</el-menu-item>
+            <el-menu-item index="/Lab1">实验1</el-menu-item>
+            <el-menu-item index="/Lab2">实验2</el-menu-item>
+            <el-menu-item index="/Lab3">实验3</el-menu-item>
+            <el-menu-item index="/Lab4">实验4</el-menu-item>
+            <el-menu-item index="/Lab5">实验5</el-menu-item>
+            <el-menu-item index="/Lab6">实验6</el-menu-item>
+
           </el-sub-menu>
         </el-menu>
       </el-aside>
@@ -62,8 +69,9 @@ import ciallo from './components/ciallo.vue'
       <el-container>
         <el-main class="main-area">
           <div class="content-wrapper">
+
             <!-- 示例内容，用于演示滚动 -->
-            <div v-for="i in 20" :key="i" class="demo-content">
+            <!-- <div v-for="i in 20" :key="i" class="demo-content">
               <h2>内容区域 {{ i }}</h2>
               <p>这是第 {{ i }} 个内容块，用于演示页面滚动效果。左侧和右侧的导航栏会跟随页面一起滚动，保持相对位置不变。</p>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
@@ -75,8 +83,7 @@ import ciallo from './components/ciallo.vue'
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
                 laborum.
               </p>
-            </div>
-
+            </div> -->
             <RouterView />
           </div>
         </el-main>
@@ -114,7 +121,7 @@ import ciallo from './components/ciallo.vue'
     <!-- 页脚 -->
     <el-footer class="footer">
       <div class="footer-content">
-        <p>&copy; 2023 Ciallo App. All rights reserved.</p>
+        <p>&copy; 2025 Ciallo App. All rights reserved.</p>
         <div class="footer-links">
           <a href="#" @click.prevent>隐私政策</a>
           <a href="#" @click.prevent>服务条款</a>
@@ -337,15 +344,20 @@ import ciallo from './components/ciallo.vue'
 }
 </style>
 
-<script lang="ts">
+<script>
 import { House, InfoFilled, Star, Menu } from '@element-plus/icons-vue'
-
+import { RouterLink, RouterView } from 'vue-router'
+import CialloItem from './components/CialloItem.vue'
+import CialloItem from './components/CialloItem.vue';
 export default {
   components: {
     House,
     InfoFilled,
     Star,
-    Menu
+    Menu,
+    RouterLink,
+    RouterView,
+    Ciallo,
   }
 }
 </script>

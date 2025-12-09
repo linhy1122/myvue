@@ -11,15 +11,13 @@
       <span style="animation-delay: 0.306224s;">★</span></span>
   </div>
 </template>
-<!-- <script>
-import { defineComponent } from '@vue/composition-api'
+<script lang="ts">
+import { defineComponent } from 'vue';
 
 export default defineComponent({
-  setup() {
-
-  },
-})
-</script> -->
+  name: 'CialloItem'
+});
+</script>
 <style scoped>
 .shake-text {
   font-size: 24px;
