@@ -5,13 +5,20 @@
     <el-header class="header">
       <div class="header-content">
         <div class="logo-section">
-          <img alt="Vue logo" class="logo" src="@/assets/logo.jpg" width="60" height="60" />
-          <h1 class="app-title"><CialloItem/>App</h1>
+          <img
+            alt="Vue logo"
+            class="logo"
+            src="@/assets/logo.jpg"
+            width="60"
+            height="60"
+          />
+          <h1 class="app-title"><CialloItem />App</h1>
         </div>
         <div class="header-right">
           <el-button type="primary" @click="$router.push('/')">首页</el-button>
           <el-button @click="$router.push('/about')">关于</el-button>
           <el-button @click="$router.push('/ciallo')">Ciallo</el-button>
+          <el-button @click="$router.push('/login')">登录</el-button>
         </div>
       </div>
     </el-header>
@@ -19,8 +26,14 @@
     <div class="page-content">
       <!-- 左侧导航栏 -->
       <el-aside width="220px" class="sidebar">
-        <el-menu :default-active="$route.path" class="sidebar-menu" router background-color="#f5f5f5" text-color="#333"
-          active-text-color="#409EFF">
+        <el-menu
+          :default-active="$route.path"
+          class="sidebar-menu"
+          router
+          background-color="#f5f5f5"
+          text-color="#333"
+          active-text-color="#409EFF"
+        >
           <el-menu-item index="/">
             <el-icon>
               <House />
@@ -60,7 +73,6 @@
             <el-menu-item index="/Lab4">实验4</el-menu-item>
             <el-menu-item index="/Lab5">实验5</el-menu-item>
             <el-menu-item index="/Lab6">实验6</el-menu-item>
-
           </el-sub-menu>
         </el-menu>
       </el-aside>
@@ -69,7 +81,6 @@
       <el-container>
         <el-main class="main-area">
           <div class="content-wrapper">
-
             <!-- 示例内容，用于演示滚动 -->
             <!-- <div v-for="i in 20" :key="i" class="demo-content">
               <h2>内容区域 {{ i }}</h2>
@@ -211,7 +222,7 @@
   margin-bottom: 20px;
   background: #f8f9fa;
   border-radius: 8px;
-  border-left: 4px solid #409EFF;
+  border-left: 4px solid #409eff;
 }
 
 .demo-content h2 {
@@ -345,10 +356,10 @@
 </style>
 
 <script>
-import { House, InfoFilled, Star, Menu } from '@element-plus/icons-vue'
-import { RouterLink, RouterView } from 'vue-router'
-import CialloItem from './components/CialloItem.vue'
-import CialloItem from './components/CialloItem.vue';
+import { House, InfoFilled, Star, Menu } from "@element-plus/icons-vue";
+import { RouterLink, RouterView } from "vue-router";
+import CialloItem from "./components/CialloItem.vue";
+
 export default {
   components: {
     House,
@@ -357,7 +368,7 @@ export default {
     Menu,
     RouterLink,
     RouterView,
-    Ciallo,
-  }
-}
+    CialloItem,
+  },
+};
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-        3
+        This is About
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'Lab3View'
+  name: 'AboutView'
 });
 </script>
 
