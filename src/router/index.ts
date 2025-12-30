@@ -95,6 +95,11 @@ const router = createRouter({
       path: '/Lab6',
       name: 'Lab6',
       component: () => import('../views/Lab6.vue'),
+    },
+    {
+      path: '/myAxios',
+      name: 'myAxios',
+      component: () => import('../views/myAxios.vue'),
     }
   ],
 })

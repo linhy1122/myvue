@@ -73,6 +73,7 @@
             <el-menu-item index="/Lab4">实验4</el-menu-item>
             <el-menu-item index="/Lab5">实验5</el-menu-item>
             <el-menu-item index="/Lab6">实验6</el-menu-item>
+            <el-menu-item index="/myAxios">MyAxios</el-menu-item>
           </el-sub-menu>
         </el-menu>
       </el-aside>
