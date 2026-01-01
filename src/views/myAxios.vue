@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button @click="SentGet">Get</el-button>
+    <el-button @click="SentGet">GetList</el-button>
     <el-button @click="SentPost">Post</el-button>
     <el-button @click="SentPostJson">PostJson</el-button>
 
@@ -8,6 +8,7 @@
     <el-button @click="myGet()">Get</el-button>
     <el-button @click="myPost()">Post</el-button>
     <el-button @click="myPostJson()">PostJson</el-button>
+
     <router-view />
   </div>
 </template>
@@ -16,6 +17,7 @@
 import { defineComponent } from "vue";
 import axios from "axios";
 import { myGet, myPost, myPostJson } from "../api/modules/test.js";
+import { get } from "../api/axios.js";
 
 export default defineComponent({
   name: "MyAxios",
@@ -50,15 +52,16 @@ export default defineComponent({
     },
 
     SentGet() {
-      axios
-        .get("http://localhost:8899/Hello/api/get")
+      // 使用封装好的 get 函数，它内部使用 apiService，会自动添加 token
+      get("/user/list") // 相对于 baseURL 的路径
         .then((response) => {
-          console.log("GET请求成功:", response.data);
+          console.log("GET请求成功:", response); // 注意：如果 axios.js 的响应拦截器处理了 res.data，这里拿到的就是业务数据部分
         })
         .catch((error) => {
           console.error("GET请求失败:", error);
         });
     },
+
     SentPost() {
       // 注意：后端接口路径是 /api/postTest，不是 /api/post
       // 后端接收的是字符串参数id
@@ -66,7 +69,7 @@ export default defineComponent({
       params.append("id", "123");
 
       axios
-        .post("http://localhost:8899/Hello/api/postTest", params, {
+        .post("http://localhost:8899/Storage/api/postTest", params, {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
@@ -88,7 +91,7 @@ export default defineComponent({
       };
 
       axios
-        .post("http://localhost:8899/Hello/api/postJson", jsonData, {
+        .post("http://localhost:8899/Storage/api/postJson", jsonData, {
           headers: {
             "Content-Type": "application/json",
           },
