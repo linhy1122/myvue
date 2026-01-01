@@ -5,14 +5,10 @@
     <el-header class="header">
       <div class="header-content">
         <div class="logo-section">
-          <img
-            alt="Vue logo"
-            class="logo"
-            src="@/assets/logo.jpg"
-            width="60"
-            height="60"
-          />
-          <h1 class="app-title"><CialloItem />App</h1>
+          <img alt="Vue logo" class="logo" src="@/assets/logo.jpg" width="60" height="60" />
+          <h1 class="app-title">
+            <CialloItem />App
+          </h1>
         </div>
         <div class="header-right">
           <el-button type="primary" @click="$router.push('/')">首页</el-button>
@@ -25,77 +21,15 @@
 
     <div class="page-content">
       <!-- 左侧导航栏 -->
-      <el-aside width="220px" class="sidebar">
-        <el-menu
-          :default-active="$route.path"
-          class="sidebar-menu"
-          router
-          background-color="#f5f5f5"
-          text-color="#333"
-          active-text-color="#409EFF"
-        >
-          <el-menu-item index="/">
-            <el-icon>
-              <House />
-            </el-icon>
-            <span>首页</span>
-          </el-menu-item>
-          <el-menu-item index="/about">
-            <el-icon>
-              <InfoFilled />
-            </el-icon>
-            <span>关于我们</span>
-          </el-menu-item>
-          <el-menu-item index="/ciallo">
-            <el-icon>
-              <Star />
-            </el-icon>
-            <span>Ciallo</span>
-          </el-menu-item>
 
-          <!-- <el-menu-item index="/Lab1">
-            <el-icon>
-              <Star />
-            </el-icon>
-            <span>Lab1</span>
-          </el-menu-item> -->
+      <!-- <el-aside width="220px" class="sidebar"> -->
+      <LeftNavigator />
+      <!-- </el-aside> -->
 
-          <el-sub-menu index="/components">
-            <template #title>
-              <el-icon>
-                <Menu />
-              </el-icon>
-              <span>实验</span>
-            </template>
-            <el-menu-item index="/Lab1">实验1</el-menu-item>
-            <el-menu-item index="/Lab2">实验2</el-menu-item>
-            <el-menu-item index="/Lab3">实验3</el-menu-item>
-            <el-menu-item index="/Lab4">实验4</el-menu-item>
-            <el-menu-item index="/Lab5">实验5</el-menu-item>
-            <el-menu-item index="/Lab6">实验6</el-menu-item>
-            <el-menu-item index="/myAxios">MyAxios</el-menu-item>
-          </el-sub-menu>
-        </el-menu>
-      </el-aside>
-
-      <!-- 主内容区 -->
+      <!-- 主内容区和右侧边栏 -->
       <el-container>
         <el-main class="main-area">
           <div class="content-wrapper">
-            <!-- 示例内容，用于演示滚动 -->
-            <!-- <div v-for="i in 20" :key="i" class="demo-content">
-              <h2>内容区域 {{ i }}</h2>
-              <p>这是第 {{ i }} 个内容块，用于演示页面滚动效果。左侧和右侧的导航栏会跟随页面一起滚动，保持相对位置不变。</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
-                dolore
-                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo
-                consequat.</p>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-                laborum.
-              </p>
-            </div> -->
             <RouterView />
           </div>
         </el-main>
@@ -155,6 +89,12 @@
   /* 居中显示 */
 }
 
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  /* 与 isCollapse 配合，展开时的宽度 */
+  min-height: 400px;
+}
+
 .header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 0;
@@ -199,11 +139,20 @@
   width: 220px;
   flex-shrink: 0;
   /* 防止侧边栏被压缩 */
+  display: flex;
+  /* 使用 flex 布局 */
+  flex-direction: column;
+  /* 垂直排列 */
+  padding: 10px;
+  /* 添加内边距 */
+  overflow-y: auto;
+  /* 如果内容过多，允许滚动 */
 }
 
 .sidebar-menu {
   border: none;
-  height: 100%;
+  /* height: 100%; */
+  /* 不再需要占满高度，因为父元素是 flex column */
 }
 
 .main-area {
@@ -356,20 +305,12 @@
 }
 </style>
 
-<script>
-import { House, InfoFilled, Star, Menu } from "@element-plus/icons-vue";
+<script lang="ts" setup>
+import { House, InfoFilled, Star, Menu, Location, Document, Setting } from "@element-plus/icons-vue";
 import { RouterLink, RouterView } from "vue-router";
 import CialloItem from "./components/CialloItem.vue";
+import LeftNavigator from "./components/LeftNavigator.vue";
 
-export default {
-  components: {
-    House,
-    InfoFilled,
-    Star,
-    Menu,
-    RouterLink,
-    RouterView,
-    CialloItem,
-  },
-};
+
+// 不再需要 export default { components: { ... } }
 </script>

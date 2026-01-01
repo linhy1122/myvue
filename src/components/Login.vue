@@ -22,7 +22,7 @@
 import { defineComponent } from "vue";
 // 假设你的 login.js 文件导出了 loginPostJson 函数
 import { loginPostJson } from "../api/modules/login.js";
-import { lo } from "element-plus/es/locales.mjs";
+// import { lo } from "element-plus/es/locales.mjs";
 
 export default defineComponent({
   name: "Login",
