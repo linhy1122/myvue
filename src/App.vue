@@ -2,22 +2,7 @@
 <template>
   <div class="main-container">
     <!-- 顶部导航栏 -->
-    <el-header class="header">
-      <div class="header-content">
-        <div class="logo-section">
-          <img alt="Vue logo" class="logo" src="@/assets/logo.jpg" width="60" height="60" />
-          <h1 class="app-title">
-            <CialloItem />App
-          </h1>
-        </div>
-        <div class="header-right">
-          <el-button type="primary" @click="$router.push('/')">首页</el-button>
-          <el-button @click="$router.push('/about')">关于</el-button>
-          <el-button @click="$router.push('/ciallo')">Ciallo</el-button>
-          <el-button @click="$router.push('/login')">登录</el-button>
-        </div>
-      </div>
-    </el-header>
+    <HeaderBar />
 
     <div class="page-content">
       <!-- 左侧导航栏 -->
@@ -35,32 +20,7 @@
         </el-main>
 
         <!-- 右侧边栏 -->
-        <el-aside width="280px" class="right-sidebar">
-          <div class="sidebar-content">
-            <h3>快速导航</h3>
-            <el-button type="text" @click="$router.push('/')">返回首页</el-button>
-            <el-button type="text" @click="$router.push('/about')">关于我们</el-button>
-            <el-button type="text" @click="$router.push('/ciallo')">Ciallo页面</el-button>
-
-            <div class="sidebar-card">
-              <h4>系统信息</h4>
-              <p>当前页面: {{ $route.name || $route.path }}</p>
-              <p>当前时间: {{ new Date().toLocaleString() }}</p>
-            </div>
-
-            <div class="sidebar-card">
-              <h4>用户状态</h4>
-              <p>已登录</p>
-              <p>用户: admin</p>
-            </div>
-
-            <div class="sidebar-card">
-              <h4>通知中心</h4>
-              <p>新消息: 3条</p>
-              <p>待办事项: 5项</p>
-            </div>
-          </div>
-        </el-aside>
+        <!-- <RightSideBar /> -->
       </el-container>
     </div>
 
@@ -83,7 +43,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  width: 1200px;
+  width: 1300px;
   /* 固定页面宽度 */
   margin: 0 auto;
   /* 居中显示 */
@@ -95,7 +55,7 @@
   min-height: 400px;
 }
 
-.header {
+/* .header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 0;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
@@ -125,7 +85,7 @@
 .header-right {
   display: flex;
   gap: 10px;
-}
+} */
 
 .page-content {
   display: flex;
@@ -224,7 +184,7 @@
 .footer {
   background-color: #2c3e50;
   color: white;
-  padding: 20px;
+  padding: 15px;
   text-align: center;
 }
 
@@ -310,6 +270,9 @@ import { House, InfoFilled, Star, Menu, Location, Document, Setting } from "@ele
 import { RouterLink, RouterView } from "vue-router";
 import CialloItem from "./components/CialloItem.vue";
 import LeftNavigator from "./components/LeftNavigator.vue";
+import RightSideBar from "./components/RightSideBar.vue";
+import LogOutButton from "./components/LogOutButton.vue";
+import HeaderBar from "./components/HeaderBar.vue";
 
 
 // 不再需要 export default { components: { ... } }

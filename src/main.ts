@@ -8,11 +8,15 @@ import App from './App.vue'
 import router from './router'
 import './assets/global.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import ECharts from 'vue-echarts'
+import * as echarts from 'echarts'
 
 const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
+app.component('v-chart', ECharts)
+app.config.globalProperties.$echarts = echarts
 app.use(createPinia())
 app.use(router)
 app.use(ElementPlus)

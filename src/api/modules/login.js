@@ -8,7 +8,7 @@ export const loginPostJson = (loginData) => {
     pwd: loginData.pwd, // 获取前端传递的 pwd 字段
   }
 
-  return axios.post('http://localhost:8899/Storage/user/login', requestData, {
+  return axios.post('http://localhost:8899/Storage/api/login', requestData, {
     // Content-Type 会由 axios 自动设置为 application/json
   })
 }

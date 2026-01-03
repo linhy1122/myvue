@@ -10,7 +10,7 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: '/Home',
       name: 'Home',
       component: Home,
       meta: { requiresAuth: true },
@@ -69,16 +69,92 @@ const router = createRouter({
       // 注意：登录页不需要认证，所以不加 meta: { requiresAuth: true }
     },
     {
+      path: '/logout', // 登出页路由
+      name: 'LogOut',
+      component: () => import('../components/LogOutButton.vue'),
+      // 登出页通常也不需要认证
+    },
+    {
       path: '/register', // 注册页路由
       name: 'Register',
       component: () => import('../components/Register.vue'),
       // 注册页通常也不需要认证
     },
     {
+      path: '/headerBar',
+      name: 'HeaderBar',
+      component: () => import('../components/HeaderBar.vue'),
+    },
+    {
       path: '/leftNavigator',
       name: 'LeftNavigator',
       component: () => import('../components/LeftNavigator.vue'),
     },
+    {
+      path: '/rightSideBar',
+      name: 'RightSideBar',
+      component: () => import('../components/RightSideBar.vue'),
+    },
+    {
+      path: '/userManagement',
+      name: 'UserManagement',
+      component: () => import('../components/UserManagement.vue'),
+      meta: { requiresAuth: true }, // <--- 添加这行
+    },
+    {
+      path: '/PersonalInfo',
+      name: 'PersonalInfo',
+      component: () => import('../components/PersonalInfo.vue'),
+      meta: { requiresAuth: true }, // <--- 添加这行
+    },
+    {
+      path: '/CompanyInfo',
+      name: 'CompanyInfo',
+      component: () => import('../components/CompanyInfo.vue'),
+      meta: { requiresAuth: true }, // <--- 添加这行
+    },
+    {
+      path: '/Warehouse',
+      name: 'Warehouse',
+      component: () => import('../components/Warehouse.vue'),
+      meta: { requiresAuth: true }, // <--- 添加这行
+    },
+    {
+      path: '/Category',
+      name: 'Category',
+      component: () => import('../components/Category.vue'),
+      meta: { requiresAuth: true }, // <--- 添加这行
+    },
+    {
+      path: '/Product',
+      name: 'Product',
+      component: () => import('../components/Product.vue'),
+      meta: { requiresAuth: true }, // <--- 添加这行
+    },
+    {
+      path: '/InOutStock',
+      name: 'InOutStock',
+      component: () => import('../components/InOutStock.vue'),
+      meta: { requiresAuth: true }, // <--- 添加这行
+    },
+    {
+      path: '/Permission',
+      name: 'Permission',
+      component: () => import('../components/Permission.vue'),
+      meta: { requiresAuth: true }, // <--- 添加这行
+    },
+    {
+      path: '/DataStats1',
+      name: 'DataStats1',
+      component: () => import('../components/DataStats1.vue'),
+      meta: { requiresAuth: true }, // <--- 添加这行
+    },
+    // {
+    //   path: '/DataStats2',
+    //   name: 'DataStats2',
+    //   component: () => import('../components/DataStats2.vue'),
+    //   meta: { requiresAuth: true }, // <--- 添加这行
+    // },
     {
       path: '/Lab1',
       name: 'lab1',

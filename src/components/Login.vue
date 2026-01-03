@@ -8,21 +8,21 @@
       </div>
       <div class="form-group">
         <label for="pwd">密码:</label>
-        <input type="pwd" id="pwd" v-model="pwd" required />
+        <input type="password" id="pwd" v-model="pwd" required /> <!-- 修改 type="pwd" 为 type="password" -->
       </div>
       <!-- 点击这个按钮调用 loginPostJson 方法 -->
       <button type="submit" @click="loginPostJson">登录 (JSON)</button>
       <el-button @click="$router.push('/register')">注册</el-button>
     </form>
-
   </div>
 </template>
 
 <script>
 import { defineComponent } from "vue";
+// import { useRouter } from 'vue-router'; // 不需要导入 useRouter 了
+import { useAuthStore } from '@/stores/auth'; // 导入 auth store
 // 假设你的 login.js 文件导出了 loginPostJson 函数
 import { loginPostJson } from "../api/modules/login.js";
-// import { lo } from "element-plus/es/locales.mjs";
 
 export default defineComponent({
   name: "Login",
@@ -34,8 +34,8 @@ export default defineComponent({
   },
   methods: {
     handleSubmit() {
-      alert(`登录信息: ${this.Account}`);
-      // 这里可以添加实际登录逻辑
+      // 这里可以添加表单验证逻辑，但目前主要逻辑在 loginPostJson
+      console.log("表单提交，但登录逻辑在 loginPostJson 方法中");
     },
     async loginPostJson() {
       try {
@@ -43,58 +43,54 @@ export default defineComponent({
         const res = await loginPostJson({ Account: this.Account, pwd: this.pwd });
         console.log("封装 POST JSON 成功:", res.data);
 
-        if (res.data.success) { // 假设后端返回 success: true 表示登录成功
+        if (res.data && res.data.success) { // 假设后端返回 { success: true, token: '...' }
           const token = res.data.token; // 从响应中获取 token
           console.log("登录成功，获取到 token:", token);
 
-          // 将 token 存储到 localStorage
-          localStorage.setItem('authToken', token);
-          console.log("Token 已存储到 localStorage:" + localStorage.getItem('authToken'));
+          // --- 修改点：使用 Store 存储 token ---
+          const authStore = useAuthStore(); // 获取 auth store 实例
+          authStore.setToken(token); // 调用 store 的方法，它会自动同步到 localStorage
 
-          // 可以在这里进行页面跳转等操作
-          // this.$router.push('/dashboard'); // 例如跳转到首页
+          console.log("Token 已通过 Store 存储到 localStorage:", localStorage.getItem('authToken'));
+
+          // --- 修改点：使用 this.$router ---
+          // this.$router 是 Vue Router 提供给组件实例的属性，在 Options API 中使用
+          await this.$router.push('/Home'); // 使用 this.$router.push
+
         } else {
-          console.error("登录失败:", res.data.message); // 显示后端返回的错误信息
+          // 处理登录失败，例如后端返回了错误信息
+          console.error("登录失败:", res.data?.message || "未知错误");
+          // 你可以在这里显示一个错误提示给用户
+          // 例如：this.$message.error(res.data?.message || "登录失败");
         }
       } catch (error) {
         console.error("封装 POST JSON 失败:", error);
         if (error.response) {
           // 服务器响应了错误状态码 (e.g., 401)
           console.error("服务器响应错误:", error.response.data);
+          console.error("状态码:", error.response.status);
+          // 根据不同状态码显示不同错误信息
+          if (error.response.status === 401) {
+            console.error("用户名或密码错误");
+            // this.$message.error("用户名或密码错误");
+          } else if (error.response.status === 500) {
+            console.error("服务器内部错误");
+            // this.$message.error("服务器内部错误");
+          } else {
+            console.error("请求失败:", error.response.data.message || error.response.statusText);
+            // this.$message.error(error.response.data.message || "请求失败");
+          }
         } else if (error.request) {
           // 请求已发出但没有收到响应
           console.error("请求发送失败，没有收到响应:", error.request);
+          // this.$message.error("网络错误，请检查连接");
         } else {
           // 其他错误
           console.error("请求配置错误:", error.message);
+          // this.$message.error("请求配置错误");
         }
       }
     },
-
-    // login() {
-    //   // 注意：后端接口路径是 /Hello/user/login
-    //   // 注意：后端接收的是 @RequestBody LoginRequest request (JSON)，而不是 @RequestParam (Form Data)
-    //   // 所以这个方法发送 Form Data 与后端不匹配，会失败。
-    //   // 如果你只想测试 Form Data，需要修改后端为 @RequestParam
-    //   const params = new URLSearchParams();
-    //   params.append("Account", this.Account);
-    //   params.append("pwd", this.pwd);
-    //   // 注意：axios.postjson 是错误的写法，已修正为 axios.post
-    //   // 但 Content-Type 未设置，axios 默认会根据数据类型设置，URLSearchParams 会被设置为 application/x-www-form-urlencoded
-    //   axios
-    //     .post("http://localhost:8899/Hello/user/login", params, {
-    //       headers: {
-    //         "Content-Type": "application/x-www-form-urlencoded", // 明确设置为 Form Data
-    //       },
-    //     })
-    //     .then((response) => {
-    //       console.log("POST表单请求成功:", response.data);
-    //     })
-    //     .catch((error) => {
-    //       console.error("POST表单请求失败:", error);
-    //     });
-    // },
-
   },
 });
 </script>
@@ -103,6 +99,10 @@ export default defineComponent({
 .login-container {
   max-width: 400px;
   margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fafafa;
 }
 
 .form-group {
@@ -112,22 +112,42 @@ export default defineComponent({
 label {
   display: block;
   margin-bottom: 5px;
+  font-weight: bold;
 }
 
 input {
   width: 100%;
-  padding: 8px;
+  padding: 8px 12px;
   box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #42b883;
+  box-shadow: 0 0 5px rgba(66, 184, 131, 0.3);
 }
 
 button {
-  padding: 8px 15px;
+  padding: 10px 15px;
   background-color: #42b883;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   margin-top: 5px;
-  /* 添加一点间距 */
+  width: 100%;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #3aa876;
+}
+
+/* 如果你使用了 Element Plus 的 el-button，可以添加一些样式 */
+.el-button {
+  margin-top: 10px;
+  width: 100%;
 }
 </style>
